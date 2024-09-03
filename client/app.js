@@ -8,7 +8,7 @@ async function handleSubmit(event) {
   const data = Object.fromEntries(formData);
 
   //call our API
-  const response = await fetch("http://localhost:8080/joke", {
+  const response = await fetch("https://user-inputs-post1.onrender.com/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
