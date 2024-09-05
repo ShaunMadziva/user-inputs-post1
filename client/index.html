@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./app.js" defer></script>
     <title>Document</title>
   </head>
   <body>
-    <h1>Forms and POST</h1>
-    <form>
+    <h1>Add a funny Joke</h1>
+    <form id="form">
       <input name="setup" placeholder="Setup" />
       <input name="punchline" placeholder="Punchline" />
       <button>Add Joke</button>
     </form>
+    <div id="jokes"></div>
   </body>
 </html>

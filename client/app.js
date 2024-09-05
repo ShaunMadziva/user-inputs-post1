@@ -1,4 +1,4 @@
-const form = document.querySelector("form");
+const form = document.getElementById("form");
 
 async function handleSubmit(event) {
   event.preventDefault();
@@ -7,8 +7,8 @@ async function handleSubmit(event) {
   const formData = new FormData(form);
   const data = Object.fromEntries(formData);
 
-  //call our API
-  const response = await fetch("https://user-inputs-post1.onrender.com/joke", {
+  //call our API POST end point
+  const response = await fetch("http://localhost:8080/jokes", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -17,6 +17,25 @@ async function handleSubmit(event) {
 
   console.log("From the server:", responseData);
   form.reset();
+  getJokes();
 }
 
 form.addEventListener("submit", handleSubmit);
+
+//get all the jokes from the database and diplay them
+
+const jokesContainer = document.getElementById("jokes");
+
+async function getJokes() {
+  const response = await fetch("http://localhost:8080/jokes");
+  const jokes = await response.json();
+  console.log(jokes);
+  jokesContainer.innerHTML = "";
+  jokes.forEach((joke) => {
+    const p = document.createElement("p");
+    p.textContent = `${joke.id}: ${joke.setup}... ${joke.punchline}`;
+    jokesContainer.appendChild(p);
+  });
+}
+
+getJokes();
